@@ -1,0 +1,179 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HackerQuiz | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/jpg" href="{% static 'quiz/image/head2.png' %}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div.card
+{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    text-align: center;
+    margin-top:20px;
+    margin-left: 20px;
+}
+div.header
+{
+    background-color: #39424e;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-family: Courier;
+}
+div.card:hover
+{
+    border-bottom: 2px solid white;
+}
+a#main-nav:hover
+{
+    border-bottom: 2px solid white;
+}
+a#link-nav
+{
+    color: #39424e;
+    font-family: Calibri;
+    font-size: 16px;
+    text-decoration: none;
+}
+a#link-nav:hover
+{
+    color: green;
+}
+span#center-link
+{
+    margin: 0px 5px;
+}
+body
+{
+    font-family: Courier;
+    min-height: 100%;
+
+}
+html,body
+{
+    height: 100%;
+}
+        #container
+        {
+            min-height: 100%;
+        }
+        #main
+        {
+            overflow: auto;
+            padding-bottom: 140px;
+        }
+        #footer
+        {
+            background: #39424e;
+            color: white;
+            font-family: Calibri;
+            position: relative;
+            height: 200px;
+            margin-top: -100px;
+            clear: both;
+        }
+        @media only screen and (max-width: 600px) {
+            #footer{
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #39424e;border:0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}" style="color: white;margin-bottom: 15px;"><img src="{% static 'quiz/image/green4.png' %}" width="130px" style="border-radius: 5px;"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav" >
+        <li><a href="{% url 'home' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-list"></span> DASHBOARD</a></li>
+          <li><a href="{% url 'contest' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-calendar"></span> CONTEST</a></li>
+          <li><a href="{% url 'create_quiz' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-edit"></span> CREATE QUIZ</a></li>
+          <li><a href="{% url 'video' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-facetime-video"></span> VIDEOS</a></li>
+          {% if user.username == 'dhakshin' %}
+              <li><a href="{% url 'controller' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-lock"></span> ADMIN</a></li>
+          {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+              <div class="dropdown">
+                   <li style="color: white;font-family: Courier;font-size: 15px;margin-right: 55px;" data-toggle="dropdown"><span class="glyphicon glyphicon-user" style="margin-right: 10px;margin-top13px;margin-top: 15px;"></span>{{ user.get_username.upper}}<span class="caret"></span></li>
+                   <ul class="dropdown-menu" style="background-color: #39424e;">
+                       <li><a href="{% url 'profile' %}" style="color: white;margin-top: 5px;"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
+                        <li><a href="{% url 'logout' %}" style="color: white;margin-top: 5px;"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+                   </ul>
+              </div>
+
+            {% else %}
+              <li><a href="{% url 'signup' %}" style="color: white;margin-top: 13px;"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>
+              <li><a href="{% url 'login' %}" style="color: white;margin-top: 13px;"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+            {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+   <div id="container">
+       <div id="main">
+           {% block content %}
+       <div class="col-sm-offset-2" style="margin-top:100px;">
+           <h4>Bored To Solve:<a href="{% url 'video' %}">(Watch Videos and Learn)</a></h4>
+         {% for y in a %}
+           <h4>{{ y.track_name }}</h4>
+                   {% for x in y.titles.all %}
+                          <div class="card" style="width: 250px;">
+                          <a href="/list/{{ y }}/{{ x }}">
+                             <div class="header">
+                                <img src="{% static 'quiz/image/head1.png' %}" width="30px" height="30px" style="border-radius: 5px"><p>{{ x }}</p>
+                             </div>
+                           </a>
+                          </div>
+                   {% endfor %}
+               {% endfor %}
+       </div>
+       <br>
+   {% endblock %}
+       </div>
+   </div>
+
+    <footer id="footer" style="font-family:Courier;font-size: 15px">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-4">
+                  <div>CONTACT US:</div>
+                   <div class="glyphicon glyphicon-earphone"> 919585466857</div><br>
+                   <div class="glyphicon glyphicon-envelope"> hackerquiz.in.help@gmail.com</div><br>
+                   <div class="glyphicon glyphicon-expand"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: white"> youtube</a></div><br>
+                   <div class="glyphicon glyphicon-map-marker"> Coimbatore </div><br>
+                   <div><span class="glyphicon glyphicon-copyright-mark">HackerQuiz</span><span>  All Rights Reserved.</span></div>
+            </div>
+            <div class="col-sm-4">
+                    <div>NAVIGATION:</div>
+                    <div>
+                        <ul style="list-style-type: none">
+                            <li><a href="{% url 'home' %}" style="color: white;margin-left: -30px;"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
+                            <li><a href="{% url 'contest' %}" style="color: white;margin-left: -30px;"><span class="glyphicon glyphicon-calendar"></span> CONTEST</a></li>
+                            <li><a href="{% url 'create_quiz' %}" style="color: white;margin-left: -30px;"><span class="glyphicon glyphicon-edit"></span> CREATE QUIZ</a></li>
+                       </ul>
+                    </div>
+            </div>
+        </div>
+    </footer>
+   <script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'quiz/Base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+     <div class="container" style="margin-top:100px;">
+          <h3>Questions:</h3>
+          <form method="post">
+          {% csrf_token %}
+              {% for x in form %}
+               {{ x.errors }}
+                {{ x.label_tag }}
+               {{ x|attr:'class:form-control' }}
+           {% endfor %}
+           <br>
+          <input type="submit" value="Proceed for next question" class="bt btn-success btn-block"><br>
+          </form>
+     </div>
+{% endblock %}

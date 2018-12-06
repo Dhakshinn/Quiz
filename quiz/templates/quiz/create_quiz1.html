@@ -1,0 +1,29 @@
+{% extends 'quiz/Base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container" style="margin-top:100px;font-family: Courier;">
+    <div>
+        <mark style="background-color: red;">NOTE:</mark>
+        <ol>
+            <li>Please fill the below form to create quiz by providing title for your quiz and a password.</li>
+            <li>Once the form filled you will be redirect to your profile where you can see your quiz.</li>
+            <li>From there you can add or remove questions and changes to your quiz.</li>
+            <li>Once your form submitted your quiz track will be available in contest.</li>
+        </ol>
+    </div>
+     <strong style="font-family: Courier;font-size: 20px;">QUIZ DETAILS</strong>
+    <div class="container" style="font-family: Courier">
+        <form method="post">
+            {% csrf_token %}
+            {% for x in form %}
+            <div class="form-group">
+                <strong style="color: red;">{{ x.errors }}</strong>
+            {{ x.label_tag}}
+            {{ x |attr:'class:form-control'}}
+            </div>
+            {% endfor %}
+            <input type="submit" value="CONFIRM DETAILS"  class="btn btn-success btn-block">
+        </form>
+    </div>
+</div>
+{% endblock %}

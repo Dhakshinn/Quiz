@@ -1,0 +1,25 @@
+{% extends 'quiz/Base.html' %}
+{% block content %}
+    <div class="container" style="margin-top: 100px;">
+        <div style="margin-bottom: 20px">
+            <script src="https://apis.google.com/js/platform.js"></script>
+            <div class="g-ytsubscribe" data-channelid="UCoxrSuWBsHsYYmkgULDwIvA" data-layout="full" data-count="hidden"></div>
+        </div>
+        {% block video %}
+            <div><h4>ALL VIDEO TRACKS</h4></div>
+                 <div style="margin-left: 10px;font-size: 15px;">
+                     <a href="{% url 'general_knowledge' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> GENERAL KNOWLEDGE</a><br>
+                     <a href="{% url 'general_science' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> GENERAL SCIENCE</a><br>
+                     <a href="{% url 'current_affairs' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> CURRENT AFFAIRS</a><br>
+                     <a href="{% url 'government_exam' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> GOVERNMENT EXAM</a><br>
+                     <a href="{% url 'computer_science' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> COMPUTER SCIENCE</a>
+                 </div>
+        {% endblock %}
+    </div>
+    <style>
+           a:hover
+           {
+               color: black;
+           }
+    </style>
+{% endblock %}

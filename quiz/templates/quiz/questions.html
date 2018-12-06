@@ -1,0 +1,44 @@
+{% extends 'quiz/Base.html' %}
+{% block content %}
+    <div class="container" style="margin-top:100px;">
+         <span style="color: orangered;font-size: 15px;"><strong class="glyphicon glyphicon-stats"><span>{{ track.capitalize }} Score</span>: {{ scoreboard.score }}</strong></span><br>
+        <span class="glyphicon glyphicon-education" style="color: rebeccapurple;"><a href="/scoreboard_main/{{ title }}/{{ track }}/" style="text-decoration: none">ScoreBoard</a><span></span></span>
+    </div>
+    <div class="container">
+          <a href="{% url 'home' %}" id="link-nav">{{ track }}</a><span class="glyphicon glyphicon-chevron-right" id="center-link"></span><a href="/list/{{ track }}/{{ title }}/" id="link-nav">{{ title }}</a ><span class="glyphicon glyphicon-chevron-right" id="center-link"></span><a id="link-nav">{{ topic }}</a>
+    </div>
+    <div class="container">
+          {% for x in a %}
+              {% if x.topic_name.name == topic %}
+                  {% for z in x.questions.all %}
+                     <div class="card">
+                         <div class="header">
+                             <div>
+                                 <form method="post" action="/evaluation/{{ track }}/{{ title }}/{{ topic }}/{{ z.id }}/">
+                                     {% csrf_token %}
+                                     <div class="row">
+                                         <div class="col-sm-5">
+                                                <p><strong>{{ forloop.counter }}.</strong>{{ z }}</p>
+                                                <input type="radio" name="options" value="{{ z.option1 }}"><span>{{ z.option1 }}</span><br>
+                                                <input type="radio" name="options" value="{{ z.option2 }}"><span>{{ z.option2 }}</span><br>
+                                                <input type="radio" name="options" value="{{ z.option3 }}"><span>{{ z.option3 }}</span><br>
+                                                <input type="radio" name="options" value="{{ z.option4 }}" required><span>{{ z.option4 }}</span><br>
+                                         </div>
+                                         <div class="col-sm-4">
+                                                 {% if z in solved.questions_solved.all %}
+                                                      <span class="glyphicon glyphicon-ok-circle" style="color: limegreen">solved</span><br>
+                                                     <span><strong>answer :</strong> {{ z.answer }}</span>
+                                                  {% else %}
+                                                      <input type="submit" class="btn btn-success" value="submit">
+                                                  {% endif %}
+                                         </div>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                      </div>
+                  {% endfor %}
+              {% endif %}
+          {% endfor %}
+    </div>
+{% endblock %}

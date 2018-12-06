@@ -1,0 +1,71 @@
+{% extends 'quiz/Base.html' %}
+{% block content %}
+    {% load staticfiles %}
+<div class="container" style="margin-top:100px;">
+ <strong style="font-family: Courier;font-size: 20px;">PROFILE</strong>
+    <div class="container" style="font-family: Courier">
+    <div class="col-sm-1">
+        <img src="{% static 'quiz/image/head2.png' %}" style="border-radius:60px;">
+    </div>
+    <div class="col-sm-5">
+        {% if user.is_authenticated %}
+         <p><span class="glyphicon glyphicon-user"></span> {{ user.get_username.upper }}</p>
+         <p><span class="glyphicon glyphicon-envelope"></span> {{ user.email }}</p>
+         <p><span class="glyphicon glyphicon-fire"></span> {{ user.date_joined.date }}</p>
+     {% endif %}
+    </div>
+    </div>
+    <hr>
+
+
+    <div>
+       {% if scores.exists %}
+        <strong style="font-family: Courier;font-size: 20px;">YOUR SCOREBOARD</strong>
+        <table class="table table-hover table-bordered">
+              <tr style="color: #609ab6;">
+                  <th><span class="glyphicon glyphicon-list"></span>Track</th>
+                  <th><span class="glyphicon glyphicon-stats"></span>Score</th>
+              </tr>
+              {% for x in scores %}
+              <tr>
+                  <td>{{ x.track }}</td>
+                  <td>{{ x.score }}</td>
+              </tr>
+              {% endfor %}
+        </table>
+       {% endif %}
+    </div>
+    <hr>
+
+
+
+
+
+    <div>
+    {% if a.exists %}
+        <strong style="font-family: Courier;font-size: 20px;">YOUR QUIZES</strong>
+        {% for x in a %}
+                 <div class="card">
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div><span>QUIZ NAME:</span><span>{{ x.title }}</span></div>
+                             <div><span>NO OF QUESTIONS:</span><span>{{ x.questions.count }}</span></div>
+                                <div><span>PASSWORD:</span><mark style="color: red">{{ x.password }}</mark></div>
+                            </div>
+                            <div class="col-sm-6">
+                                  <a href="{% url 'create_quiz_question' x.title %}" style="color: white;"><span class="glyphicon glyphicon-plus"></span>Add</a>
+                                  <a href="{% url 'List_contest_question' x.title %}" style="color: white;"><span class="glyphicon glyphicon-edit"></span>Edit</a><br><br>
+                                  <a class="btn btn-primary" href="{% url 'contest_score' x.title %}">Scoreboard</a>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+    <hr>
+    </div>
+    <br>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'quiz/Base.html' %}
+{% block content %}
+    <div class="container" style="font-family: Courier;margin-top: 100px;">
+         <a id="link-nav">{{ title.upper }}</a><br>
+         <h3>Scoreboard</h3>
+         <table class="table table-hover">
+             <tr>
+                 <th>Username</th>
+                 <th>Score</th>
+             </tr>
+             {% for x in contest_score %}
+                 <tr>
+                     {% if request.user.username == x.name %}
+                         <td><mark style="background-color: red;color: white;">{{ x.name }}</mark></td>
+                         <td><mark style="background-color: red;color: white;">{{ x.score }}</mark></td>
+                     {% else %}
+                      <td>{{ x.name }}</td>
+                      <td>{{ x.score }}</td>
+                   {% endif %}
+                 </tr>
+             {% endfor %}
+         </table>
+    </div>
+{% endblock %}

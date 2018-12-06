@@ -1,0 +1,28 @@
+{% extends 'quiz/Base.html' %}
+{% block content %}
+     <div class="container" style="margin-top: 100px;">
+               <div class="card">
+                       <h3>{{ quiz.title.upper }}</h3>
+               </div>
+               {% for x in quiz.questions.all %}
+                   <div class="card">
+                      <div class="header">
+                       <form method="post" action="/contest_evaluation/{{ quiz.title }}/{{ x.id }}/">
+                           {% csrf_token %}
+                           <p>{{ forloop.counter }}.{{ x.question }}</p>
+                          <input type="radio" name="option" value="{{ x.option1 }}" required><span>{{ x.option1 }}</span><br>
+                          <input type="radio" name="option" value="{{ x.option2 }}"><span>{{ x.option2 }}</span><br>
+                          <input type="radio" name="option" value="{{ x.option3 }}"><span>{{ x.option3 }}</span><br>
+                          <input type="radio" name="option" value="{{ x.option4 }}"><span>{{ x.option4 }}</span><br>
+                          {% if x in contest_score.quiz_questions.all %}
+                              <span class="glyphicon glyphicon-ok-circle" style="color: limegreen">solved</span><br>
+                              <span><strong>answer :</strong> {{ x.answer }}</span>
+                          {% else %}
+                              <input type="submit" class="btn btn-success" value="submit">
+                          {% endif %}
+                        </form>
+                      </div>
+                   </div>
+               {% endfor %}
+     </div>
+{% endblock %}

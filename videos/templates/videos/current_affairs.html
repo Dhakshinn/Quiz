@@ -1,0 +1,9 @@
+{% extends 'videos/main.html' %}
+{% block video %}
+        <div>
+            <div  style="font-size: 15px;"><a href="{% url 'video' %}"><span>ALL TRACKS</span></a><span class="glyphicon glyphicon-chevron-right"></span><span>CURRENT AFFAIRS</span></div><br>
+            <iframe width="250" height="150" style="border: 2px solid #39424e" src="https://www.youtube-nocookie.com/embed/aIwLQ9VYOEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="250" height="150" style="border: 2px solid #39424e" src="https://www.youtube.com/embed/CHGc_d-IzVY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="250" height="150" style="border: 2px solid #39424e" src="https://www.youtube.com/embed/qzzn3j0Jnww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+{% endblock %}
