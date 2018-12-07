@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <title>HackerQuiz | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/jpg" href="{% static 'quiz/image/head2.png' %}"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, post-check=0, pre-check=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'quiz/image/head2.png' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         div.card
-{
+         {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     text-align: center;
     margin-top:20px;
@@ -58,6 +60,7 @@ body
 html,body
 {
     height: 100%;
+    overflow-x: hidden;
 }
         #container
         {
@@ -66,7 +69,7 @@ html,body
         #main
         {
             overflow: auto;
-            padding-bottom: 140px;
+            padding-bottom: 200px;
         }
         #footer
         {
@@ -74,13 +77,36 @@ html,body
             color: white;
             font-family: Calibri;
             position: relative;
-            height: 200px;
-            margin-top: -100px;
+            height: 50px;
+            margin-top: -15px;
             clear: both;
+            padding-left: 250px;
+            padding-top: 8px;
+        }
+        #mobile
+        {
+            background: #39424e;
+            color: white;
+            font-family: Calibri;
+            position: relative;
+            height: 140px;
+            margin-top: -20px;
+            clear: both;
+            padding-left: 10px;
+            padding-top: 10px;
         }
         @media only screen and (max-width: 600px) {
             #footer{
-                height: 250px;
+                height: 80px;
+                padding-left: 0px;
+                display:none;
+            }
+
+        }
+        @media only screen and (min-width: 600px){
+            #mobile
+            {
+                display: none;
             }
         }
     </style>
@@ -148,27 +174,22 @@ html,body
        </div>
    </div>
 
-    <footer id="footer" style="font-family:Courier;font-size: 15px">
-        <div class="row">
-            <div class="col-sm-offset-1 col-sm-4">
-                  <div>CONTACT US:</div>
-                   <div class="glyphicon glyphicon-earphone"> 919585466857</div><br>
-                   <div class="glyphicon glyphicon-envelope"> hackerquiz.in.help@gmail.com</div><br>
-                   <div class="glyphicon glyphicon-expand"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: white"> youtube</a></div><br>
-                   <div class="glyphicon glyphicon-map-marker"> Coimbatore </div><br>
-                   <div><span class="glyphicon glyphicon-copyright-mark">HackerQuiz</span><span>  All Rights Reserved.</span></div>
+    <footer id="footer" style="font-size: 15px">
+            <div>
+                   <span class="glyphicon glyphicon-earphone">919585466857</span><span> | </span>
+                   <span class="glyphicon glyphicon-envelope">hackerquiz.in.help@gmail.com</span><span> | </span>
+                   <span class="glyphicon glyphicon-expand"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: white">Youtube</a></span><span> | </span>
+                   <span class="glyphicon glyphicon-map-marker">Coimbatore </span><span> | </span>
+                   <span class="glyphicon glyphicon-copyright-mark">HackerQuiz</span><span>  All Rights Reserved.</span>
             </div>
-            <div class="col-sm-4">
-                    <div>NAVIGATION:</div>
-                    <div>
-                        <ul style="list-style-type: none">
-                            <li><a href="{% url 'home' %}" style="color: white;margin-left: -30px;"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
-                            <li><a href="{% url 'contest' %}" style="color: white;margin-left: -30px;"><span class="glyphicon glyphicon-calendar"></span> CONTEST</a></li>
-                            <li><a href="{% url 'create_quiz' %}" style="color: white;margin-left: -30px;"><span class="glyphicon glyphicon-edit"></span> CREATE QUIZ</a></li>
-                       </ul>
-                    </div>
-            </div>
-        </div>
+    </footer>
+    <footer id="mobile">
+        <div>CONTACT US:</div>
+        <div class="glyphicon glyphicon-earphone">919585466857</div><br>
+        <div class="glyphicon glyphicon-envelope">hackerquiz.in.help@gmail.com</div><br>
+        <div class="glyphicon glyphicon-expand"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: white">Youtube</a></div><br>
+        <div class="glyphicon glyphicon-map-marker">Coimbatore </div><br>
+        <div class="glyphicon glyphicon-copyright-mark">HackerQuiz</div><span>  All Rights Reserved.</span>
     </footer>
    <script>
 $(document).ready(function(){

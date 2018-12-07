@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^contest_scoreboard/(?P<title>.+)/$',views.scoreboard_contest,name="contest_score"),
     url(r'^contest_evaluation/(?P<title>.+)/(?P<pk>[0-9]+)/$',views.contest_evaluation,name="contest_evaluation"),
     url(r'^list/(?P<track>.+)/(?P<title>.+)/$',views.list_content,name="List"),
-    url(r'^question/(?P<track>.+)/(?P<title>.+)/(?P<topic>.+)/$', views.list_questions, name="question"),
-    url(r'^evaluation/(?P<track>.+)/(?P<title>.+)/(?P<topic>.+)/(?P<pk>[0-9]+)/$', views.evaluation, name="evaluation"),
+    url(r'^question/(?P<track>.+)/(?P<title>.+)/(?P<topic>.+)/(?P<pk>[0-9]+)/$', views.list_questions, name="question"),
     url(r'^scoreboard_main/(?P<title>.+)/(?P<track>.+)/$',views.scoreboard_main,name="main_score"),
 ]

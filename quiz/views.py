@@ -34,39 +34,37 @@ def list_content(request,track,title):
         s = scoreboard_track.objects.get(user_name=request.user.username,track=track)
     return render(request, 'quiz/title_details.html', context={'a': a,'title':title,'track':track,'scoreboard':s})
 
-def list_questions(request,track,title,topic):
-    a=question_view.objects.get(id=1)
-    a.views=a.views+1
+def list_questions(request,track,title,topic,pk):
+    if request.method=="POST":
+        x = questions.objects.get(id=pk)
+        if request.method == "POST":
+            if not x.user_solved_set.filter(name=request.user.username).exists():
+                data = []
+                for key in request.POST:
+                    data.append(request.POST[key])
+                if request.POST[key] == x.answer:
+                    if request.user.is_authenticated():
+                        username = request.user.username
+                        user = user_solved.objects.get(name=username)
+                        user.questions_solved.add(x)
+                        user.save()
+                        s = scoreboard_track.objects.get(user_name=username, track=track)
+                        s.score = s.score + 10
+                        s.save()
+            else:
+                username = request.user.username
+                user = user_solved.objects.get(name=username)
+                user.questions_solved.add(x)
+                user.save()
+                s = scoreboard_track.objects.get(user_name=request.user.username, track=track)
+    a = question_view.objects.get(id=1)
+    a.views = a.views + 1
     a.save()
-    a=topic_details.objects.all()
+    a = topic_details.objects.all()
     solved = user_solved.objects.get(name=request.user.username)
     s = scoreboard_track.objects.get(user_name=request.user.username, track=track)
     return render(request,'quiz/questions.html',context={'a':a,'title':title,'track':track,'topic':topic,'solved':solved,'scoreboard':s})
 
-def evaluation(request,track,title,topic,pk):
-    a = topic_details.objects.all()
-    x=questions.objects.get(id=pk)
-    solved=user_solved.objects.get(name=request.user.username)
-    if request.method == "POST":
-        data=[]
-        for key in request.POST:
-            data.append(request.POST[key])
-        if request.POST[key]==x.answer:
-            if request.user.is_authenticated():
-                username=request.user.username
-                user=user_solved.objects.get(name=username)
-                user.questions_solved.add(x)
-                user.save()
-                s = scoreboard_track.objects.get(user_name=username,track=track)
-                s.score = s.score + 10
-                s.save()
-        else:
-            username = request.user.username
-            user = user_solved.objects.get(name=username)
-            user.questions_solved.add(x)
-            user.save()
-            s = scoreboard_track.objects.get(user_name=request.user.username,track=track)
-    return render(request,'quiz/questions.html',context={'a':a,'title':title,'track':track,'topic':topic,'solved':solved,'scoreboard':s})
 
 def scoreboard_main(request,title,track):
     score=scoreboard_track.objects.filter(track=track).order_by('-score')
