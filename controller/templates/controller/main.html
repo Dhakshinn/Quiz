@@ -18,6 +18,35 @@
           </table>
 
 
+    <h2 style="text-align: center;">Video Views<span class="badge">{{ total_video_view }}</span></h2>
+          <table class="table table-hover table-bordered">
+              <tr style="color: #609ab6;">
+                  <th>Playlist</th>
+                  <th>Views</th>
+              </tr>
+                  <tr>
+                     <td>Computer Science</td>
+                     <td>{{computer_science_views.view}}</td>
+                  </tr>
+              <tr>
+                     <td>Current Affairs</td>
+                     <td>{{ current_affairs_views.view }}</td>
+                  </tr>
+              <tr>
+                     <td>General Knowledge</td>
+                     <td>{{general_knowledge_views.view}}</td>
+                  </tr>
+              <tr>
+                     <td>General Science</td>
+                     <td>{{general_science_views.view}}</td>
+                  </tr>
+              <tr>
+                     <td>Government Exam</td>
+                     <td>{{government_exam_views.view }}</td>
+                  </tr>
+          </table>
+
+
          <h2 style="text-align: center;">Acitve Users<span class="badge">{{ active.count }}</span></h2>
          <table class="table table-hover table-bordered">
             <tr style="color: #609ab6;">
@@ -47,5 +76,6 @@
                   </tr>
               {% endfor %}
           </table>
+
     </div>
 {% endblock %}
