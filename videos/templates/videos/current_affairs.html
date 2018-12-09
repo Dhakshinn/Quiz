@@ -1,9 +1,27 @@
 {% extends 'videos/main.html' %}
 {% block video %}
         <div>
-            <div  style="font-size: 15px;"><a href="{% url 'video' %}"><span>ALL TRACKS</span></a><span class="glyphicon glyphicon-chevron-right"></span><span>CURRENT AFFAIRS</span></div><br>
-            <iframe width="250" height="150" style="border: 2px solid #39424e" src="https://www.youtube-nocookie.com/embed/aIwLQ9VYOEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="250" height="150" style="border: 2px solid #39424e" src="https://www.youtube.com/embed/CHGc_d-IzVY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="250" height="150" style="border: 2px solid #39424e" src="https://www.youtube.com/embed/qzzn3j0Jnww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div style="font-size: 15px;"><a href="{% url 'video' %}"><span>ALL TRACKS</span></a><span class="glyphicon glyphicon-chevron-right"></span><span>CURRENT AFFAIRS</span></div><br>
+        </div>
+        <div class="card" style="width: 250px;">
+            <iframe width="250" height="150" class="card-img-top" src="https://www.youtube-nocookie.com/embed/aIwLQ9VYOEk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           <div class="card-body">
+           <h5 class="card-title">Video-1</h5>
+           <p class="card-text">Current Affairs|| Important Days</p>
+           </div>
+        </div>
+        <div class="card" style="width: 250px;">
+            <iframe width="250" height="150" class="card-img-top"src="https://www.youtube.com/embed/CHGc_d-IzVY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           <div class="card-body">
+           <h5 class="card-title">Video-2</h5>
+           <p class="card-text">Current Affairs|| Important Days</p>
+           </div>
+        </div>
+        <div class="card" style="width: 250px;">
+            <iframe width="250" height="150" class="card-img-top" src="https://www.youtube.com/embed/qzzn3j0Jnww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           <div class="card-body">
+           <h5 class="card-title">Video-3</h5>
+           <p class="card-text">Current Affairs|| Important Days</p>
+           </div>
         </div>
 {% endblock %}
