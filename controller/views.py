@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.utils import timezone
-from quiz.models import View,title_view,question_view
+from quiz.models import View,title_view,question_view,user_solved
 from videos.models import *
 
 @login_required
@@ -24,10 +24,12 @@ def controller(request):
     general_science_views = general_science_view.objects.get(id=1)
     government_exam_views = government_exam_view.objects.get(id=1)
     total_video_view = computer_science_views.view + current_affairs_views.view + general_knowledge_views.view +general_science_views.view +government_exam_views.view
+    users_solved=user_solved.objects.all()
     return render(request,'controller/main.html',{'active':active,'users':users,'home_views':home_views,'title_views':title_views,'question_views':question_views,
                                                   'computer_science_views':computer_science_views,
                                                   'current_affairs_views':current_affairs_views,
                                                   'general_knowledge_views':general_knowledge_views,
                                                   'general_science_views':general_science_views,
                                                   'government_exam_views':government_exam_views,
-                                                  'total_video_view':total_video_view})
+                                                  'total_video_view':total_video_view,
+                                                  'user_solved':users_solved})

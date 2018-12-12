@@ -4,9 +4,11 @@
         <div style="margin-bottom: 20px">
             <script src="https://apis.google.com/js/platform.js"></script>
             <div class="g-ytsubscribe" data-channelid="UCoxrSuWBsHsYYmkgULDwIvA" data-layout="full" data-count="hidden"></div>
+            <div>Subscribe to hackerquiz so that you don't miss any new uploads</div>
+            <span style="margin-top:5px;"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA?sub_confirmation=1" class="btn btn-danger" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);">SUBSCRIBE</a></span>
         </div>
         {% block video %}
-            <div><h4>ALL VIDEO TRACKS</h4></div>
+            <div><h4><strong>ALL VIDEO TRACKS</strong></h4></div>
                  <div style="margin-left: 10px;font-size: 15px;">
                      <a href="{% url 'general_knowledge' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> GENERAL KNOWLEDGE</a><br>
                      <a href="{% url 'general_science' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-chevron-right"></span> GENERAL SCIENCE</a><br>

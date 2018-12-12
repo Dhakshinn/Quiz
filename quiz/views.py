@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .forms import UserForm,Create_Quiz_Form,Create_Quiz_Question
 from django.core.mail import EmailMessage
 from django.contrib.auth import authenticate,login
-from .models import track_details,title_details,topic_details,View,create_quiz,questions,user_solved,programming_score,title_view,\
+from .models import topic as t,track_details,title_details,topic_details,View,create_quiz,questions,user_solved,title_view,\
     question_view,contest_scores,quiz_questions,scoreboard_track
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView

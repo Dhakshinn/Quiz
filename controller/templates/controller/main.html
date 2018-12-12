@@ -1,52 +1,14 @@
 {% extends 'quiz/Base.html' %}
 {% block content %}
     <div class="container" style="margin-top: 100px;font-family: Courier;">
+          <div id="site_view" class="card"  style="width: 300px;height: 300px"></div>
+          <div id="video_view" class="card"  style="width: 300px;height: 300px"></div>
+          <div id="user_solved" class="card" style="width: 300px;height: 300px"></div>
+    </div>
 
 
-         <h2 style="text-align: center;">Views</h2>
-         <table class="table table-hover table-bordered ">
-           <tr style="color: #609ab6;">
-               <th>Home view</th>
-               <th>Title view</th>
-               <th>Question view</th>
-           </tr>
-          <tr>
-                <td>{{ home_views.views }}</td>
-                <td>{{ title_views.views }}</td>
-                <td>{{ question_views.views }}</td>
-          </tr>
-          </table>
 
-
-    <h2 style="text-align: center;">Video Views<span class="badge">{{ total_video_view }}</span></h2>
-          <table class="table table-hover table-bordered">
-              <tr style="color: #609ab6;">
-                  <th>Playlist</th>
-                  <th>Views</th>
-              </tr>
-                  <tr>
-                     <td>Computer Science</td>
-                     <td>{{computer_science_views.view}}</td>
-                  </tr>
-              <tr>
-                     <td>Current Affairs</td>
-                     <td>{{ current_affairs_views.view }}</td>
-                  </tr>
-              <tr>
-                     <td>General Knowledge</td>
-                     <td>{{general_knowledge_views.view}}</td>
-                  </tr>
-              <tr>
-                     <td>General Science</td>
-                     <td>{{general_science_views.view}}</td>
-                  </tr>
-              <tr>
-                     <td>Government Exam</td>
-                     <td>{{government_exam_views.view }}</td>
-                  </tr>
-          </table>
-
-
+    <div class="container" style="margin-top: 100px;font-family: Courier;">
          <h2 style="text-align: center;">Acitve Users<span class="badge">{{ active.count }}</span></h2>
          <table class="table table-hover table-bordered">
             <tr style="color: #609ab6;">
@@ -65,17 +27,88 @@
           <table class="table table-hover table-bordered">
               <tr style="color: #609ab6;">
                   <th>Username</th>
-                  <th>Email_id</th>
                   <th>Last login</th>
               </tr>
               {% for user in users %}
                   <tr>
                      <td>{{ user.username }}</td>
-                     <td>{{ user.email }}</td>
                      <td>{{ user.last_login }}</td>
                   </tr>
               {% endfor %}
           </table>
 
     </div>
+      <script src="https://code.highcharts.com/highcharts.src.js"></script>
+      <script>
+      	Highcharts.chart('site_view',{
+      		chart :{
+      			type:'column'
+      		},
+      		title :{
+      			text:'Website Views'
+      		},
+            subtitle:{
+
+            },
+      		xAxis:{
+      			categories:['Dashboard','Title','Questions']
+      		},
+            yAxis:{
+      		    title:{
+      		        text:'Views'
+                }
+            },
+      		series:[{
+      			name:'Views',
+                colorByPoint:true,
+      			data:[{{ home_views.views }},{{ title_views.views }},{{ question_views.views }}],
+      		}]
+      	});
+
+      	Highcharts.chart('video_view',{
+      		chart :{
+      			type:'column'
+      		},
+      		title :{
+      			text:'Video Views'
+      		},
+      		xAxis:{
+      			categories:['General Knowledge','General Science','Computer Science','Current Affairs','Government Exam']
+      		},
+            yAxis:{
+      		    title:{
+      		        text:'Views'
+                }
+            },
+      		series:[{
+      			name:'Views',
+                colorByPoint:true,
+      			data:[{{ general_knowledge_views.view }},{{ general_science_views.view }},{{ computer_science_views.view }},{{ current_affairs_views.view }},{{ government_exam_views.view }}],
+      		}]
+      	});
+
+      	Highcharts.chart('user_solved',{
+      		chart :{
+      			type:'column'
+      		},
+      		title :{
+      			text:'No of questions solved by each user'
+      		},
+      		xAxis:{
+      			categories:[{% for user in user_solved %}'{{ user.name }}'{% if not forloop.last %},{% endif %}{% endfor %}]
+      		},
+            yAxis:{
+      		    title:{
+      		        text:'no of questions solved'
+                }
+            },
+      		series:[{
+      			name:'Username',
+                colorByPoint:true,
+      			data:[
+                    {% for user in user_solved %}{{ user.questions_solved.all.count }}{% if not forloop.last %},{% endif %}{% endfor %}
+                ],
+      		}]
+      	});
+      </script>
 {% endblock %}

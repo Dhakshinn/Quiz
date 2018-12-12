@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HackerQuiz | Home</title>
+    <title>HackerQuiz | Solve | Learn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, post-check=0, pre-check=0" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -64,7 +64,7 @@ html,body
 }
         #container
         {
-            min-height: 100%;
+            min-height: 95%;
         }
         #main
         {
@@ -77,10 +77,9 @@ html,body
             color: white;
             font-family: Calibri;
             position: relative;
-            height: 50px;
-            margin-top: -15px;
+            height: 5%;
             clear: both;
-            padding-left: 250px;
+            padding-left: 280px;
             padding-top: 8px;
         }
         #mobile
@@ -155,7 +154,7 @@ html,body
        <div id="main">
            {% block content %}
        <div class="col-sm-offset-2" style="margin-top:100px;">
-           <h4>Bored To Solve:<a href="{% url 'video' %}">(Watch Videos and Learn)</a></h4>
+           <h4><strong>DASHBOARD</strong></h4>
          {% for y in a %}
            <h4>{{ y.track_name }}</h4>
                    {% for x in y.titles.all %}

@@ -26,10 +26,6 @@ class topic(models.Model):
     def clean(self):
         self.name=self.name.upper()
 
-class title_details(models.Model):
-    title_name=models.ForeignKey(title)
-    topics=models.ManyToManyField('topic')
-
 
 class questions(models.Model):
     ques=models.TextField(max_length=1000)
@@ -42,6 +38,12 @@ class questions(models.Model):
     def __str__(self):
         return self.ques
 
+class title_details(models.Model):
+    title_name=models.ForeignKey(title)
+    topics=models.ManyToManyField('topic')
+
+    def __str__(self):
+        return self.title_name.title_name
 
 class topic_details(models.Model):
     topic_name=models.ForeignKey(topic)
@@ -63,12 +65,8 @@ class user_solved(models.Model):
     name=models.CharField(max_length=100)
     questions_solved=models.ManyToManyField("questions",blank=True)
 
-class programming_score(models.Model):
-    user_name=models.CharField(max_length=100)
-    score=models.IntegerField(default=0)
-
     def __str__(self):
-        return self.user_name
+        return self.name
 
 
 class View(models.Model):
