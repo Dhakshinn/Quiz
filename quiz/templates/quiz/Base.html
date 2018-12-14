@@ -15,7 +15,7 @@
     <style>
         div.card
          {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 18px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     text-align: center;
     margin-top:20px;
     margin-left: 20px;
@@ -73,22 +73,24 @@ html,body
         }
         #footer
         {
-            background: #39424e;
-            color: white;
+            box-shadow: 0 4px 80px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            background:white;
+            color: black;
             font-family: Calibri;
             position: relative;
             height: 5%;
             clear: both;
-            padding-left: 280px;
+            padding-left: 380px;
             padding-top: 8px;
         }
         #mobile
         {
-            background: #39424e;
-            color: white;
+            box-shadow: 0 4px 80px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            background: white;
+            color: black;
             font-family: Calibri;
             position: relative;
-            height: 140px;
+            height: 100px;
             margin-top: -20px;
             clear: both;
             padding-left: 10px;
@@ -175,20 +177,15 @@ html,body
 
     <footer id="footer" style="font-size: 15px">
             <div>
-                   <span class="glyphicon glyphicon-earphone">919585466857</span><span> | </span>
                    <span class="glyphicon glyphicon-envelope">hackerquiz.in.help@gmail.com</span><span> | </span>
-                   <span class="glyphicon glyphicon-expand"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: white">Youtube</a></span><span> | </span>
                    <span class="glyphicon glyphicon-map-marker">Coimbatore </span><span> | </span>
                    <span class="glyphicon glyphicon-copyright-mark">HackerQuiz</span><span>  All Rights Reserved.</span>
+                   <span style="margin-left: 220px;">Follow on :<a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: black;text-decoration: none;"><img src="{% static 'quiz/image/red.png' %}" width="30px" height="30px">Youtube</a></span><span></span>
             </div>
     </footer>
     <footer id="mobile">
-        <div>CONTACT US:</div>
-        <div class="glyphicon glyphicon-earphone">919585466857</div><br>
-        <div class="glyphicon glyphicon-envelope">hackerquiz.in.help@gmail.com</div><br>
-        <div class="glyphicon glyphicon-expand"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: white">Youtube</a></div><br>
-        <div class="glyphicon glyphicon-map-marker">Coimbatore </div><br>
-        <div class="glyphicon glyphicon-copyright-mark">HackerQuiz</div><span>  All Rights Reserved.</span>
+        <div class="glyphicon glyphicon-copyright-mark" style="margin-left: 50px;">HackerQuiz</div><span>  All Rights Reserved.</span><br>
+        <div style="margin-left: 90px;margin-top: 15px">Follow @<img src="{% static 'quiz/image/red.png' %}" width="25px" height="25px"><a href="https://www.youtube.com/channel/UCoxrSuWBsHsYYmkgULDwIvA/" style="color: black">Youtube</a></div>
     </footer>
    <script>
 $(document).ready(function(){
