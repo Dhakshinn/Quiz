@@ -157,16 +157,19 @@ def signup(request):
         form=UserForm(request.POST)
         if form.is_valid():
             form.save()
+            solved = user_solved()
+            solved.name = request.user.username
+            solved.save()
             address=form.cleaned_data.get('email')
-            email = EmailMessage('HACKERQUIZ', 'Hi ,thank you for signing up HACKERQUIZ....', to=[address])
-            #email.send()
             username = form.cleaned_data.get('username')
             raw_pass= form.cleaned_data.get('password1')
             user=authenticate(username=username,password=raw_pass)
             login(request,user)
-            solved=user_solved()
-            solved.name=request.user.username
-            solved.save()
+            try:
+                email = EmailMessage('HACKERQUIZ', 'Hi ,thank you for signing up HACKERQUIZ....', to=[address])
+                email.send()
+            except:
+                pass
             return redirect('home')
     return render(request,'registration/signup.html',{'form':form})
 

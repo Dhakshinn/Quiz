@@ -158,12 +158,12 @@ html,body
        <div class="col-sm-offset-2" style="margin-top:100px;">
            <h4><strong>DASHBOARD</strong></h4>
          {% for y in a %}
-           <h4>{{ y.track_name }}</h4>
+           <h4 style="color: green;">{{ y.track_name }}</h4>
                    {% for x in y.titles.all %}
                           <div class="card" style="width: 250px;">
                           <a href="/list/{{ y }}/{{ x }}">
                              <div class="header">
-                                <img src="{% static 'quiz/image/head1.png' %}" width="30px" height="30px" style="border-radius: 5px"><p>{{ x }}</p>
+                                <p>{{ x }}</p>
                              </div>
                            </a>
                           </div>
