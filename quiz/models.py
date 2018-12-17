@@ -62,8 +62,10 @@ class scoreboard_track(models.Model):
 #----------------------------------------------------------------------------------------------------------------------------------
 
 class user_solved(models.Model):
-    name=models.CharField(max_length=100)
-    questions_solved=models.ManyToManyField("questions",blank=True)
+    name=models.CharField(max_length=100,primary_key=True)
+    questions_solved=models.ManyToManyField("questions",blank=True,related_name="solved")
+    correct_solved=models.ManyToManyField("questions",blank=True,related_name="correct")
+    wrong_solved=models.ManyToManyField("questions",blank=True,related_name="wrong")
 
     def __str__(self):
         return self.name

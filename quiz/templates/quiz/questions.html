@@ -26,8 +26,13 @@
                                          </div>
                                          <div class="col-sm-4">
                                                  {% if z in solved.questions_solved.all %}
-                                                      <span class="glyphicon glyphicon-ok-circle" style="color: limegreen">solved</span><br>
-                                                     <span><strong>answer :</strong> {{ z.answer }}</span>
+                                                      <span>solved</span><br>
+                                                     {% if z in solved.correct_solved.all %}
+                                                         <span class="glyphicon glyphicon-ok-circle" style="color: lawngreen">correct</span><br>
+                                                     {% else %}
+                                                         <span class="glyphicon glyphicon-remove" style="color: red">wrong</span><br>
+                                                     {% endif %}
+                                                     <span><strong>answer :</strong> {{ z.answer }}</span><br>
                                                   {% else %}
                                                       <input type="submit" class="btn btn-success" value="view & submit">
                                                   {% endif %}

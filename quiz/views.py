@@ -12,17 +12,23 @@ from django.core.urlresolvers import reverse_lazy
 # ----------------------------------------DASHBOARD-------------------------------------------------------------------------------
 def home(request):
     a = track_details.objects.all()
-    x=View.objects.get(id=1)
-    x.views = x.views +1
-    x.save()
+    if request.user.username == 'dhakshin':
+        pass
+    else:
+        x = View.objects.get(id=1)
+        x.views = x.views + 1
+        x.save()
     return render(request,'quiz/Base.html',context={'a':a})
 
 
 @login_required
 def list_content(request,track,title):
-    a=title_view.objects.get(id=1)
-    a.views=a.views+1
-    a.save()
+    if request.user.username == 'dhakshin':
+        pass
+    else:
+        a = title_view.objects.get(id=1)
+        a.views = a.views + 1
+        a.save()
     a=title_details.objects.all()
     if scoreboard_track.objects.filter(user_name=request.user.username,track=track).exists():
         s = scoreboard_track.objects.get(user_name=request.user.username,track=track)
@@ -38,28 +44,31 @@ def list_questions(request,track,title,topic,pk):
     if request.method=="POST":
         x = questions.objects.get(id=pk)
         if request.method == "POST":
-            if not x.user_solved_set.filter(name=request.user.username).exists():
+            solve=user_solved.objects.get(name=request.user.username)
+            if x not in solve.questions_solved.all():
                 data = []
                 for key in request.POST:
                     data.append(request.POST[key])
-                if request.POST[key] == x.answer:
-                    if request.user.is_authenticated():
-                        username = request.user.username
-                        user = user_solved.objects.get(name=username)
-                        user.questions_solved.add(x)
-                        user.save()
-                        s = scoreboard_track.objects.get(user_name=username, track=track)
-                        s.score = s.score + 10
-                        s.save()
-            else:
                 username = request.user.username
                 user = user_solved.objects.get(name=username)
                 user.questions_solved.add(x)
                 user.save()
-                s = scoreboard_track.objects.get(user_name=request.user.username, track=track)
-    a = question_view.objects.get(id=1)
-    a.views = a.views + 1
-    a.save()
+                if request.POST[key] == x.answer:
+                    if request.user.is_authenticated():
+                        s = scoreboard_track.objects.get(user_name=username, track=track)
+                        s.score = s.score + 10
+                        s.save()
+                        user.correct_solved.add(x)
+                        user.save()
+                else:
+                    user.wrong_solved.add(x)
+                    s = scoreboard_track.objects.get(user_name=request.user.username, track=track)
+    if request.user.username == 'dhakshin':
+        pass
+    else:
+        a = question_view.objects.get(id=1)
+        a.views = a.views + 1
+        a.save()
     a = topic_details.objects.all()
     solved = user_solved.objects.get(name=request.user.username)
     s = scoreboard_track.objects.get(user_name=request.user.username, track=track)

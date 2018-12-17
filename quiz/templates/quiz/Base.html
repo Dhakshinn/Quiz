@@ -22,8 +22,8 @@
 }
 div.header
 {
-    background-color: #39424e;
-    color: white;
+    background-color: white;
+    color: #39424e;
     padding: 10px;
     font-size: 16px;
     font-family: Courier;
@@ -125,10 +125,10 @@ html,body
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav" >
-        <li><a href="{% url 'home' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-list"></span> DASHBOARD</a></li>
+        <li><a href="{% url 'home' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-list"></span> DASHBOARD [SOLVE]</a></li>
           <li><a href="{% url 'contest' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-calendar"></span> CONTEST</a></li>
           <li><a href="{% url 'create_quiz' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-edit"></span> CREATE QUIZ</a></li>
-          <li><a href="{% url 'video' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-facetime-video"></span> VIDEOS</a></li>
+          <li><a href="{% url 'video' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-facetime-video"></span> VIDEOS [LEARN]</a></li>
           {% if user.username == 'dhakshin' %}
               <li><a href="{% url 'controller' %}" style="color: white;margin-top: 13px;" id="main-nav"><span class="glyphicon glyphicon-lock"></span> ADMIN</a></li>
           {% endif %}
@@ -155,15 +155,19 @@ html,body
    <div id="container">
        <div id="main">
            {% block content %}
-       <div class="col-sm-offset-2" style="margin-top:100px;">
-           <h4><strong>DASHBOARD</strong></h4>
+       <div style="margin-top:60px;">
+           <div class="card" style="margin:0;">
+              <div class="header">
+                  <h4><strong>DASHBOARD</strong></h4>
+              </div>
+           </div>
          {% for y in a %}
-           <h4 style="color: green;">{{ y.track_name }}</h4>
+           <h4 style="color: #39424e;"><strong>{{ y.track_name }}</strong></h4>
                    {% for x in y.titles.all %}
                           <div class="card" style="width: 250px;">
                           <a href="/list/{{ y }}/{{ x }}">
                              <div class="header">
-                                <p>{{ x }}</p>
+                                <p><strong>{{ x }}</strong></p>
                              </div>
                            </a>
                           </div>
