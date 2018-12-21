@@ -1,13 +1,14 @@
 {% extends 'quiz/Base.html' %}
 {% load widget_tweaks %}
+{% load staticfiles %}
 {% block content %}
-    <div class="container" style="margin-top: 100px;font-family: Courier ;">
+    <div class="container" style="margin-top: 100px;font-family: Arial ;">
          <form method="post">
     {% csrf_token %}
     <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
          <div class="well" style="background-color: white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);">
-            <h3 style="text-align: center;">SIGNUP</h3>
+            <h4 style="text-align: center;"><img src="{% static 'quiz/image/head2.png' %}" style="border-radius: 30px" width="45px" height="45px"><br><strong>SIGNUP</strong></h4>
             {% for x in form %}
             <div class="form-group">
             {{ x.errors }}
@@ -15,7 +16,7 @@
             {{ x |attr:'class:form-control'}}
             </div>
             {% endfor %}
-             <input type="submit" value="CREATE NEW ACCOUNT"  class="btn btn-success btn-block">
+             <input type="submit" value="CREATE NEW ACCOUNT"  class="btn btn-success" style="margin:5px;margin-left:20px;padding:10px 50px;background-color:#45CE30;border:none;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);">
          </div>
            <a href="{% url 'login' %}" style="margin-left: 40px;">Already have an account?</a>
         </div>

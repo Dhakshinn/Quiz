@@ -2,10 +2,10 @@
 {% block content %}
     {% if request.user.is_authenticated %}
     <div class="container" style="margin-top:100px;">
-         <span style="color: orangered;font-size: 15px;"><strong class="glyphicon glyphicon-stats"><span>{{ track }} SCORE</span>: {{ scoreboard.score }}</strong></span><br>
-        <span class="glyphicon glyphicon-education" style="color: rebeccapurple;"><a href="/scoreboard_main/{{ title }}/{{ track }}/" style="text-decoration: none">SCOREBOARD</a><span></span></span>
+         <span class="glyphicon glyphicon-stats" style="padding: 5px;border-radius: 5px;color:#45CE30;background-color:white;border:none;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);"> {{ track }} SCORE : {{ scoreboard.score }}</span><br>
+        <span class="glyphicon glyphicon-education" style="margin-top: 3px;padding: 5px;border-radius: 5px;color:#45CE30;background-color:white;border:none;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);"><a href="/scoreboard_main/{{ title }}/{{ track }}/" style="text-decoration: none;color: #45CE30"> LEADERBOARD</a><span></span></span>
     </div>
-        <div class="container">
+        <div class="container" style="margin-top: 5px;">
                <a href="{% url 'home' %}" id="link-nav">{{ track }}</a><span class="glyphicon glyphicon-chevron-right" id="center-link"></span><a id="link-nav">{{ title }}</a>
           </div>
     {% endif %}
@@ -16,7 +16,7 @@
                                <div class="card" style="width: 250px;">
                                <a href="/question/{{ track }}/{{ title }}/{{ z }}/1/">
                                  <div class="header">
-                                     <p>{{ z }}</p>
+                                     <p><strong>{{ z }}</strong></p>
                                  </div>
                                </a>
                                </div>

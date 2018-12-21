@@ -15,10 +15,10 @@
     <style>
         div.card
          {
-    box-shadow: 0 4px 18px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    text-align: center;
-    margin-top:20px;
-    margin-left: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            text-align: center;
+            margin-top:10px;
+            margin-left: 20px;
 }
 div.header
 {
@@ -27,10 +27,11 @@ div.header
     padding: 10px;
     font-size: 16px;
     font-family: Courier;
+    text-decoration: none;
 }
 div.card:hover
 {
-    border-bottom: 2px solid white;
+   border-bottom: 2px solid white;
 }
 a#main-nav:hover
 {
@@ -55,6 +56,7 @@ body
 {
     font-family: Courier;
     min-height: 100%;
+    background-color:rgb(253,255,255);;
 
 }
 html,body
@@ -158,11 +160,12 @@ html,body
        <div style="margin-top:60px;">
            <div class="card" style="margin:0;">
               <div class="header">
-                  <h4><strong>DASHBOARD</strong></h4>
+                  <h4 style="font-family: Arial;"><strong>DASHBOARD</strong></h4>
               </div>
            </div>
-         {% for y in a %}
-           <h4 style="color: #39424e;"><strong>{{ y.track_name }}</strong></h4>
+         <div class="col-sm-offset-2">
+             {% for y in a %}
+           <h5 style="color: #39424e;font-family: Arial;margin-left: 5px;margin-top: 30px;"><strong>{{ y.track_name }}</strong></h5>
                    {% for x in y.titles.all %}
                           <div class="card" style="width: 250px;">
                           <a href="/list/{{ y }}/{{ x }}">
@@ -173,6 +176,7 @@ html,body
                           </div>
                    {% endfor %}
                {% endfor %}
+         </div>
        </div>
        <br>
    {% endblock %}
