@@ -10,6 +10,12 @@ from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse_lazy
 
 # ----------------------------------------DASHBOARD-------------------------------------------------------------------------------
+def main(request):
+    if request.user.is_authenticated():
+        return redirect('home')
+    return render(request,'quiz/main.html')
+
+
 def home(request):
     a = track_details.objects.all()
     if request.user.username == 'dhakshin':

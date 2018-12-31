@@ -2,7 +2,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$',views.home,name="home"),
+    url(r'^$',views.main,name="main"),
+    url(r'^dashboard/$',views.home,name="home"),
     url(r'^email/',views.email_to_all,name="message"),
     url(r'^Signup/$',views.signup,name="signup"),
     url(r'^profile/$',views.profile,name="profile"),

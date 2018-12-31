@@ -1,0 +1,48 @@
+{% extends 'quiz/Base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="container" style="background-color:#45CE30;color:white;font-family: Arial;font-size: 50px;text-align: center;margin-top: 65px;width: 100%;padding: 50px 0px 100px 0px;">
+         <div>More than</div>
+         <div><strong>10,000+ MCQ questions</strong></div>
+         <div><span style="border-left: 10px solid white">&nbspSolve</span></div>
+         <div><span style="border-left: 10px solid white">&nbspTest</span></div>
+         <div><span style="border-left: 10px solid white">&nbspRank</span></div>
+        <div><a href="{% url 'signup' %}"><button class="btn btn-success" style="color: #45CE30 ;margin-top:30px;padding:10px;background-color:white;border:none;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);">SIGNUP & SOLVE</button></a></div>
+    </div>
+    <div class="container" style="margin-top: 20px;">
+         <div class="row">
+             <div class="col-sm-3">
+                  <div class="card" style="width: 200px;height: 250px;">
+                      <img src="{% static 'quiz/image/head1.png' %}" style="border-radius: 10px;margin: 50px;">
+                       <div class="card-body">
+                             <p>General Knowledge</p>
+                       </div>
+                  </div>
+             </div>
+             <div class="col-sm-3">
+                  <div class="card" style="width: 200px;height: 250px;">
+                      <img src="{% static 'quiz/image/head1.png' %}" style="border-radius: 10px;margin: 50px;">
+                       <div class="card-body">
+                             <p>General Science</p>
+                       </div>
+                  </div>
+             </div>
+             <div class="col-sm-3">
+                  <div class="card" style="width: 200px;height: 250px;">
+                      <img src="{% static 'quiz/image/head1.png' %}" style="border-radius: 10px;margin: 50px;">
+                       <div class="card-body">
+                             <p>General Aptitude</p>
+                       </div>
+                  </div>
+             </div>
+             <div class="col-sm-3">
+                  <div class="card" style="width: 200px;height: 250px;">
+                      <img src="{% static 'quiz/image/head1.png' %}" style="border-radius: 10px;margin: 50px;">
+                       <div class="card-body">
+                             <p>Programming</p>
+                       </div>
+                  </div>
+             </div>
+         </div>
+    </div>
+{% endblock %}

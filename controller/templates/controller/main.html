@@ -1,5 +1,6 @@
 {% extends 'quiz/Base.html' %}
 {% block content %}
+    <body onload="JSalert()">
     <div class="container" style="margin-top: 100px;font-family: Courier;">
           <div id="site_view" class="card"  style="width: 300px;height: 300px"></div>
           <div id="video_view" class="card"  style="width: 300px;height: 300px"></div>
@@ -111,4 +112,15 @@
       		}]
       	});
       </script>
+    <script type="application/javascript">
+            function JSalert() {
+                 swal(
+                     {
+                         title:"Total Users",
+                         text:'{{ users.count }}',
+                     }
+                 )
+            }
+    </script>
+    </body>
 {% endblock %}
